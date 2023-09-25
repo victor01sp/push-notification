@@ -22,6 +22,8 @@ app.post('/subscribe', (req, res)=> {
     res.json('subscribe')
 })
 
+console.log('mamanis');
+
 app.post('/push', (req, res)=> {
 
     const notification = {
