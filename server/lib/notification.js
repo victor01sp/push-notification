@@ -13,7 +13,6 @@ module.exports.generate = () => {
 }
 
 module.exports.push     = async (notification = {}, Suscription = []) => {
-
     const suscriptions = {
         success : [],
         failed  : [],
@@ -22,13 +21,12 @@ module.exports.push     = async (notification = {}, Suscription = []) => {
     const waiting     = []
 
     Suscription.forEach((suscription, i) => {
-
         const pushProm = webpush.sendNotification(suscription, JSON.stringify( notification ))
             .then( () => {
                 suscriptions.success.push( suscription )
             })
             .catch( err => {
-                //console.log( err.statusCode );
+                // console.log( err.statusCode );
                 if( [ 404, 410, undefined ].includes( err.statusCode ) ) {
                     suscriptions.failed.push( suscription )
                 }
